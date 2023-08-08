@@ -1,3 +1,4 @@
+import os
 from flask import Flask, render_template, redirect, url_for, flash, request, abort
 from flask_bootstrap import Bootstrap5
 from flask_ckeditor import CKEditor
@@ -18,7 +19,7 @@ RESPONSE = requests.get("https://zenquotes.io/api/random")
 QUOTE_DATA = RESPONSE.json()
 
 """NEWS API RESPONSE"""
-NEWS_API_KEY = "pub_27338d0060f78fb7c6769177e1b5fc67d6599"
+NEWS_API_KEY = os.environ.get("NEWS_API_KEY")
 NEWS_ENDPOINT = f" https://newsdata.io/api/1/news?apikey={NEWS_API_KEY}&country=be,fr,de,nl,gb&language=nl,en&category=technology"
 tech_news_page_1 = requests.get(NEWS_ENDPOINT).json()
 PAGE_2_ENDPOINT = f" https://newsdata.io/api/1/news?apikey={NEWS_API_KEY}&country=be,fr,de,nl,gb&language=nl,en&category=technology&page={tech_news_page_1['nextPage']}"
@@ -34,12 +35,12 @@ tech_news_page_3 = requests.get(PAGE_3_ENDPOINT).json()
 COPYRIGHT_DATE = date.today().strftime("%B %d, %Y")
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
+app.config['SECRET_KEY'] = os.environ.get('FLASK_KEY')
 ckeditor = CKEditor(app)
 Bootstrap5(app)
 
 ##CONNECT TO DB
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///blog.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DB_URI", "sqlite:///blog.db")
 db = SQLAlchemy(app)
 
 
@@ -122,6 +123,7 @@ class Comment(db.Model):
     parent_post = relationship("BlogPost", back_populates="comments")
     text = db.Column(db.String(500), nullable=False)
 
+
 with app.app_context():
     db.create_all()
 
@@ -190,7 +192,7 @@ def show_post(post_id):
         new_comment = Comment(
             text=form.comment.data,
             author_id=current_user.id,
-            post_id=requested_post
+            post_id=requested_post.id
         )
         db.session.add(new_comment)
         db.session.commit()
@@ -274,9 +276,6 @@ def get_news(page):
     return render_template("news.html", page1=tech_news, date=COPYRIGHT_DATE, num=page)
 
 
-def user_dashboard():
-    pass
-
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(port=5000, debug=True)
