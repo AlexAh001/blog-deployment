@@ -1,0 +1,80 @@
+
+{% block content %}
+{% include "header.html" %}
+
+  <header class="masthead" style="background-image: url('https://images.unsplash.com/photo-1493612276216-ee3925520721?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1964&q=80')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="site-heading">
+              <h1>Tech updates</h1>
+              <span class="subheading">Any news?</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+     {% for item in range(0, 10) %}
+       <article>
+         <div class="container">
+          <div class="row">
+           <div class="col-lg-8 col-md-10 mx-auto">
+            <h2>{{ page1['results'][item]['title'] | safe}}</h2>
+             <p> {{ page1['results'][item]['description'] | safe}}</p>
+             <p><a href="{{ page1['results'][item]['link'] | safe}}" >Go to source: {{ page1['results'][item]['source_id'] | safe}} </a></p>
+            </div>
+          </div>
+        </div>
+       </article>
+     {% endfor %}
+{% if num == 1 %}
+ <ul class="nav justify-content-center">
+  <li class="nav-item">
+    <a class="nav-link active" href="/news/1"><strong>1</strong></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/news/2">></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/news/3">>></a>
+  </li>
+ </ul>
+{% endif %}
+
+{% if num == 2 %}
+ <ul class="nav justify-content-center">
+  <li class="nav-item">
+    <a class="nav-link active" href="/news/1"><</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/news/2"><strong>2</strong></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/news/3">></a>
+  </li>
+ </ul>
+{% endif %}
+
+{% if num == 3 %}
+  <ul class="nav justify-content-center">
+  <li class="nav-item">
+    <a class="nav-link active" href="/news/1"><<</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/news/2"><</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/news/3"><strong>3</strong></a>
+  </li>
+ </ul>
+{% endif %}
+ <!-- <li class="nav-item">
+    <a class="nav-link " href="/news/4">4</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link " href="/news/5">5</a>
+  </li> -->
+
+{% include "footer.html" %}
+{% endblock %}

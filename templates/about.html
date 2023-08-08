@@ -1,0 +1,49 @@
+{% include "header.html" %}
+
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url({{ url_for('static', filename='img/about-bg.jpg')}})">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="page-heading">
+            <h1>About Me</h1>
+            <span class="subheading">This is what I do.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto" >
+        <div class="w-auto p-3" style="background-image: url('https://images.unsplash.com/photo-1629968417850-3505f5180761?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1952&q=80'); background-size: 100% auto">
+          <p>Greetings {{ current_user.name }}! I'm Alex, an unwavering IT professional passionately exploring the captivating world of technology.</p>
+            Web development, powered by Flask and Python, has become my canvas for creative aspirations.
+            Crafting my own website has been an exhilarating journey, unveiling the fusion of simplicity and power in Flask and Python.
+
+            <p>Since my early years, technology has ignited an insatiable curiosity within me.</p>
+                It possesses the ability to transform the ordinary into extraordinary, and that realization kindled a fiery passion.
+                Web development emerged as the perfect domain to manifest this ardor.
+
+            <p>Through this blog, I share my triumphs, challenges, and insights as an IT enthusiast, offering valuable information for both beginners and seasoned professionals.</p>
+            <p>My love for technology extends beyond web development to AI, cybersecurity, and data science, as I seek to embrace the broader landscape of innovation.</p>
+
+            <p>Beyond my tech endeavors, life finds me relishing outdoor adventures, savoring diverse cuisines, and indulging in captivating science-fiction novels.</p>
+            <p>This blog is an open invitation to a vibrant tech community, where we collectively unlock the untapped potential of the digital age.</p>
+
+            <p>Join me on this thrilling adventure as we script a legacy that reshapes the future of technology!</p>
+
+            <p>Happy coding!</p>
+
+            <p>Alex</p>
+         </div>
+      </div>
+    </div>
+  </div>
+  <hr>
+
+  {% include "footer.html" %}
