@@ -1,3 +1,4 @@
+pip install --upgrade pip && pip install -r requirements.txt
 Bootstrap_Flask==2.2.0
 Flask==2.2.5
 Flask_CKEditor==0.4.6
@@ -10,5 +11,4 @@ WTForms==3.0.1
 SQLAlchemy==2.0.19
 gunicorn==21.2.0
 psycopg2-binary==2.9.6
-/opt/render/project/src/.venv/bin/python -m pip install --upgrade pip
 pip install email-validator
